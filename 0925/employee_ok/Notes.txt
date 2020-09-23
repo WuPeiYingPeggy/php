@@ -1,0 +1,46 @@
+create database db0925 default character set utf8;
+use db0925;
+create table city (
+    cityId int primary key,
+    cityName varchar(20)
+);
+
+create table employee (
+   employeeId int auto_increment primary key,
+   firstName varchar(20),
+   lastName varchar(20),
+   eMail varchar(20),
+   cityId int
+);
+
+insert into employee 
+  (firstName, lastName, eMail, cityId) 
+  values 
+  ('Derek', 'Jeter', 'jeter@yankee.com', 2);
+
+insert into employee 
+  (firstName, lastName, eMail, cityId) 
+  values 
+  ('Jeremy', 'Lin', 'lin@com.com', 4);
+
+insert into city values (2, 'TaiPei'), (4, 'TaiChung'), (6, 'TaiNan');
+
+select employeeId, firstName, lastName, eMail, e.cityId, cityName  
+  from city as c 
+  join employee e on e.cityId = c.cityId
+
+
+
+
+
+
+            <div class="form-group">
+              <label class="col-md-4 control-label" for="cityId">City:</label>
+              <div class="col-md-4">
+                <select id="cityId" name="cityId" class="form-control">
+                  <option value="2" <?= ($row["cityId"] == 2) ? "selected" : "" ?> >TaiPei</option>
+                  <option value="4" <?= ($row["cityId"] == 4) ? "selected" : "" ?> >TaiChung</option>
+                  <option value="6" <?= ($row["cityId"] == 6) ? "selected" : "" ?> >TaiNan</option>
+                </select>
+              </div>
+            </div>
